@@ -17,7 +17,7 @@ object day1:
   def getTopThreeSum(caloriesArray: Array[Array[Int]]): Int =
     caloriesArray.map(_.sum).sorted(using Ordering[Int].reverse).slice(0, 3).sum
 
-  @main def run: Unit =
+  def main(args: Array[String]): Unit =
     val input = readInput()
     println(s"Solution for Part 1: ${getMaxCalories(input)}")
     println(s"Solution for Part 2: ${getTopThreeSum(input)}")
