@@ -2,7 +2,7 @@ package com.beneyal.aoc
 
 import scala.io.Source
 
-object day3:
+object day03:
   object part1:
     type Compartment = Set[Char]
 
@@ -10,7 +10,7 @@ object day3:
 
     object Rucksack:
       def fromString(s: String): Rucksack =
-        val first = Set.from(s.take(s.length / 2))
+        val first  = Set.from(s.take(s.length / 2))
         val second = Set.from(s.drop(s.length / 2))
         (first, second)
 

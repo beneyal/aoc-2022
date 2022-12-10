@@ -2,11 +2,11 @@ package com.beneyal.aoc
 
 import scala.io.Source
 
-object day4:
+object day04:
   def readInput(): Vector[(Set[Int], Set[Int])] =
     Source.fromResource("day4-input.txt").getLines().toVector.map { line =>
-      val ranges = line.split(',')
-      val firstPair = ranges(0).split('-').map(_.toInt)
+      val ranges     = line.split(',')
+      val firstPair  = ranges(0).split('-').map(_.toInt)
       val secondPair = ranges(1).split('-').map(_.toInt)
       (
         (firstPair(0) to firstPair(1)).toSet,

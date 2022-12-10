@@ -2,7 +2,7 @@ package com.beneyal.aoc
 
 import scala.io.Source
 
-object day6:
+object day06:
   import MarkerType.*
 
   enum MarkerType:

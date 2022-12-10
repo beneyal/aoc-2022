@@ -3,7 +3,7 @@ package com.beneyal.aoc
 import scala.io.Source
 import scala.annotation.tailrec
 
-object day7:
+object day07:
   import FS.*
 
   sealed trait FS:
@@ -27,13 +27,13 @@ object day7:
       instructions match
         case Nil =>
           val current = stack.head
-          val parent = stack.tail.head
+          val parent  = stack.tail.head
           parent.copy(children = parent.children :+ current)
         case head :: tail =>
           head match
             case "$ cd .." =>
               val current = stack.head
-              val parent = stack.tail.head
+              val parent  = stack.tail.head
               loop(tail, parent.copy(children = parent.children :+ current) :: stack.drop(2))
             case s"$$ cd $dir" => loop(tail, Dir(name = dir, children = Vector.empty) :: stack)
             case s"$fileSize $fileName" =>
@@ -43,7 +43,7 @@ object day7:
     loop(input, List(Dir(name = "/", children = Vector.empty)))
 
   def calculateDirectorySizesSum(root: Dir): Int =
-    val childrenSum = root.childrenSum
+    val childrenSum   = root.childrenSum
     val childrenSizes = root.children.collect { case d: Dir => d }.map(calculateDirectorySizesSum).sum
     if childrenSum <= 100000 then childrenSum + childrenSizes
     else childrenSizes
@@ -52,7 +52,7 @@ object day7:
     val needToFree = 30000000 - (70000000 - root.childrenSum)
 
     def deletionCandidates(dir: Dir): Vector[Int] =
-      val childrenSum = dir.childrenSum
+      val childrenSum        = dir.childrenSum
       val childrenCandidates = dir.children.collect { case d: Dir => d }.flatMap(deletionCandidates)
       if childrenSum >= needToFree then Vector(childrenSum) ++ childrenCandidates
       else childrenCandidates

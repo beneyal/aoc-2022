@@ -2,12 +2,12 @@ package com.beneyal.aoc
 
 import scala.io.Source
 
-object day2:
+object day02:
   import Move.*
 
   enum Move(val shapeScore: Int):
-    case Rock extends Move(1)
-    case Paper extends Move(2)
+    case Rock     extends Move(1)
+    case Paper    extends Move(2)
     case Scissors extends Move(3)
 
   def readInput(): Vector[String] =

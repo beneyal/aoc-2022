@@ -3,7 +3,7 @@ package com.beneyal.aoc
 import scala.io.Source
 import scala.annotation.tailrec
 
-object day9:
+object day09:
   import Direction.*
 
   enum Direction:

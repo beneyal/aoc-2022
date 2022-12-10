@@ -2,7 +2,7 @@ package com.beneyal.aoc
 
 import scala.io.Source
 
-object day5:
+object day05:
   type CrateStack = Vector[Vector[Option[Char]]]
   final case class Move(amount: Int, from: Int, to: Int)
 
@@ -26,7 +26,7 @@ object day5:
       .split("\n\n")
       .toVector
     val initialStacks = inputs(0).split('\n').init.map(parseCrateLine)
-    val moves = inputs(1).split('\n').map(parseMove)
+    val moves         = inputs(1).split('\n').map(parseMove)
 
     (initialStacks.toVector.transpose, moves.toVector)
 
@@ -46,7 +46,7 @@ object day5:
     }
 
   def main(args: Array[String]): Unit =
-    val (stacks, moves) = readAndParseInput()
+    val (stacks, moves)    = readAndParseInput()
     val updatedStacksPart1 = performMoves(stacks, moves, _.reverse)
     val updatedStacksPart2 = performMoves(stacks, moves)
     println(

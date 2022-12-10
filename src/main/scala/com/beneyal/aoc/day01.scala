@@ -2,7 +2,7 @@ package com.beneyal.aoc
 
 import scala.io.Source
 
-object day1:
+object day01:
   def readInput(): Array[Array[Int]] =
     Source
       .fromResource("day1-input.txt")

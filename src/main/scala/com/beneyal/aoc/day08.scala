@@ -2,7 +2,7 @@ package com.beneyal.aoc
 
 import scala.io.Source
 
-object day8:
+object day08:
   def readInput(): Vector[Vector[Int]] =
     Source.fromResource("day8-input.txt").getLines().map(_.toVector.map(_.toString.toInt)).toVector
 
