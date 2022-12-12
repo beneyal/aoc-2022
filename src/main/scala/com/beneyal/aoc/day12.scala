@@ -1,7 +1,6 @@
 package com.beneyal.aoc
 
 import scala.collection.immutable.Queue
-import scala.collection.mutable
 import scala.io.Source
 import scala.annotation.tailrec
 
@@ -34,16 +33,16 @@ object day12:
       else backtrace(parent, parent(current), current :: path)
 
     @tailrec
-    def loop(q: Queue[Point], parent: Map[Point, Point], seen: Set[Point]): List[Point] =
+    def loop(q: Queue[Point], parent: Map[Point, Point]): List[Point] =
       if q.isEmpty then List.empty
       else
         val (p @ (i, j), q0) = q.dequeue
         if p == target then backtrace(parent, target, List.empty)
         else
           val nextPossible = graph(p).filterNot(parent.contains)
-          loop(q0.enqueueAll(nextPossible), parent ++ nextPossible.map(_ -> p), seen + p)
+          loop(q0.enqueueAll(nextPossible), parent ++ nextPossible.map(_ -> p))
 
-    loop(Queue(start), Map(start -> (-1, -1)), Set.empty)
+    loop(Queue(start), Map(start -> (-1, -1)))
 
   def main(args: Array[String]): Unit =
     val (map, graph, startPos, endPos) = readInput()
