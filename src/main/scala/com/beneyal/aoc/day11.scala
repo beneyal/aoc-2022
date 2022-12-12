@@ -52,7 +52,6 @@ object day11:
         val updatedRoundNum = if currentMonkey == monkeys.length - 1 then roundNum + 1 else roundNum
         loop(monkeys, (currentMonkey + 1) % monkeys.length, updatedRoundNum, touched)
       else
-        // val worryLevel    = monkey.op(monkey.items.head) / 3
         val worryLevel    = f(monkey.op(monkey.items.head))
         val target        = if worryLevel % monkey.divisor == 0 then monkey.ifTrueMonkey else monkey.ifFalseMonkey
         val targetMonkey  = monkeys(target)
