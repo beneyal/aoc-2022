@@ -38,20 +38,20 @@ object day15:
       }
       .toList
 
-  def makeInRangeFunction(pairs: List[SensorBeaconData]): Point => Boolean =
-    pairs.foldLeft((_: Point) => false) { case (acc, SensorBeaconData(_, b, _, f, _)) =>
+  def makeInRangeFunction(data: List[SensorBeaconData]): Point => Boolean =
+    data.foldLeft((_: Point) => false) { case (acc, SensorBeaconData(_, b, _, f, _)) =>
       p => p != b && (acc(p) || f(p))
     }
 
   def countInRange(inRange: Point => Boolean, xs: List[Int], y: Int) =
     xs.count(x => inRange(Point(x, y)))
 
-  def getTuningFrequency(pairs: List[SensorBeaconData], upperBound: Int): Long =
+  def getTuningFrequency(data: List[SensorBeaconData], upperBound: Int): Long =
     @tailrec
     def loop(x: Int, y: Int): Long =
       if x >= upperBound then loop(0, y + 1)
       else
-        val skips = pairs.map(_.skip(Point(x, y))).filter(_ != x)
+        val skips = data.map(_.skip(Point(x, y))).filter(_ != x)
         if skips.isEmpty then x.toLong * 4000000 + y.toLong
         else loop(skips.head, y)
 
